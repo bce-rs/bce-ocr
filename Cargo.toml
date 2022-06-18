@@ -11,7 +11,7 @@ repository = "https://github.com/bce-rs/bce-ocr"
 
 [dependencies]
 thiserror = "1.0.31"
-ureq = "*"
+ureq = "2.4.0"
 serde = { version = "1.0", features = ["derive"] }
 serde_json = "1.0.81"
 serde_url_params = "0.2.1"

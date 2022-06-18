@@ -1,5 +1,7 @@
 # bce-ocr
 
+[![crates.io](https://img.shields.io/crates/v/bce-ocr?label=latest)](https://crates.io/crates/bce-ocr)
+
 UNOFFICIAL Baidu AI Cloud OCR SDK, currently WIP.
 
 To use this SDK, you need to apply for [Baidu AI Cloud API](https://cloud.baidu.com). Currently it's free for personal use.
