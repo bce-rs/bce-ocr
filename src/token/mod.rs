@@ -12,7 +12,8 @@ pub fn acquire_access_token(
     secret_key: &str,
 ) -> Result<(String, SystemTime), Box<dyn StdError>> {
     let before_acquire = SystemTime::now();
-    let result = ureq::get("https://aip.baidubce.com/oauth/2.0/token")
+    let result = ureq::post("https://aip.baidubce.com/oauth/2.0/token")
+        .set("Content-Type", "application/x-www-form-urlencoded")
         .query("grant_type", "client_credentials")
         .query("client_id", api_key)
         .query("client_secret", secret_key)
