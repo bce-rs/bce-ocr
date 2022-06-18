@@ -20,4 +20,3 @@ strip = true
 codegen-units = 1
 
 [dev-dependencies]
-rstest = "0.13.0"
