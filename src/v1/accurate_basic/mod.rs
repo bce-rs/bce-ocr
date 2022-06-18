@@ -1,17 +1,6 @@
 //! [API document](https://cloud.baidu.com/doc/OCR/s/1k3h7y3db)
-use serde::Serialize;
-
-#[derive(Serialize, Default)]
-pub struct Request {
-    image: Option<String>,
-    url: Option<String>,
-    pdf_file: Option<String>,
-    pub language_type: Option<Lang>,
-    pub pdf_file_num: Option<String>,
-    pub detect_direction: Option<bool>,
-    pub paragraph: Option<bool>,
-    pub probability: Option<bool>,
-}
+use serde::{Deserialize, Serialize};
+use serde_repr::Deserialize_repr;
 
 impl Request {
     pub fn new(image: Image) -> Self {
@@ -36,7 +25,10 @@ impl Request {
         self
     }
 
-    pub fn post(self, access_token: impl Into<String>) -> Result<String, Box<dyn std::error::Error>> {
+    pub fn post(
+        self,
+        access_token: impl Into<String>,
+    ) -> Result<Response, Box<dyn std::error::Error>> {
         let access_token: String = access_token.into();
         let data = serde_url_params::to_string(&self)?;
 
@@ -45,6 +37,8 @@ impl Request {
             .query("access_token", &access_token)
             .send_string(&data)?
             .into_string()?;
+
+        let response = serde_json::from_str(&response)?;
 
         Ok(response)
     }
@@ -64,7 +58,56 @@ pub struct Image {
     pub image_type: ImageType,
 }
 
-#[derive(Serialize)]
+#[derive(Serialize, Default, Debug)]
+pub struct Request {
+    image: Option<String>,
+    url: Option<String>,
+    pdf_file: Option<String>,
+    pub language_type: Option<Lang>,
+    pub pdf_file_num: Option<String>,
+    pub detect_direction: Option<bool>,
+    pub paragraph: Option<bool>,
+    pub probability: Option<bool>,
+}
+
+#[derive(Deserialize, Debug)]
+pub struct Response {
+    pub log_id: u64,
+    pub direction: Option<Direction>,
+    pub words_result: Vec<Sentence>,
+    pub pdf_file_size: Option<String>,
+    pub paragraphs_result: Option<Vec<SentenceIdx>>
+}
+
+#[derive(Deserialize, Debug)]
+pub struct SentenceIdx {
+    words_result_idx: Vec<u32>,
+} 
+
+#[derive(Deserialize, Debug)]
+pub struct Sentence {
+    words: String,
+    probability: Option<Probability>,
+}
+
+#[derive(Deserialize, Debug)]
+pub struct Probability {
+    average: f64,
+    min: f64,
+    variance: f64,
+}
+
+#[derive(Deserialize_repr, Debug)]
+#[repr(i32)]
+pub enum Direction {
+    Unknown = -1,
+    Normal,
+    Counterclockwise90,
+    Counterclockwise180,
+    Counterclockwise270,
+}
+
+#[derive(Serialize, Debug)]
 pub enum Lang {
     #[serde(rename = "auto_detect")]
     AutoDetect,

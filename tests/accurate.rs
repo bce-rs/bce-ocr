@@ -4,7 +4,7 @@ use bce_ocr::v1::accurate_basic;
 const IMAGE: &str = include_str!("res/text.png.b64");
 
 #[test]
-#[ignore]
+#[ignore = "tested with correct parameters"]
 fn accurate_basic() {
     let access_token = access_token();
     use accurate_basic::Image;
@@ -14,8 +14,13 @@ fn accurate_basic() {
         image_type: ImageType::ImageFile,
     };
 
-    let req = accurate_basic::Request::new(image);
+    let mut req = accurate_basic::Request::new(image);
+
+    req.detect_direction = Some(true);
+    req.paragraph = Some(true);
+    req.probability = Some(true);
+
     let response = req.post(access_token).unwrap();
 
-    println!("{response}");
+    println!("{response:?}");
 }
