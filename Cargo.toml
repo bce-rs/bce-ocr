@@ -1,9 +1,11 @@
 [package]
 name = "bce-ocr"
-version = "0.1.0"
+version = "2022.6.18-0"
 edition = "2021"
 license = "MIT"
 authors = ["poly000"]
+description = "unofficial rust OCR SDK of Baidu AI Cloud"
+repository = "https://github.com/bce-rs/bce-ocr"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
