@@ -1,6 +1,8 @@
-# bce-ocr
-
 <div align="center">
+
+## bce-ocr
+
+<p>simple rust sdk for Baidu AI Cloud's OCR services</p>
 
 [![crates.io](https://img.shields.io/crates/v/bce-ocr?label=latest)](https://crates.io/crates/bce-ocr)
 [![Documentation](https://docs.rs/bce-ocr/badge.svg)](https://docs.rs/bce-ocr/)
