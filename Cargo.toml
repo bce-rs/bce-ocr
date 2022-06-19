@@ -1,6 +1,6 @@
 [package]
 name = "bce-ocr"
-version = "2022.6.18-0"
+version = "2022.6.20-0"
 edition = "2021"
 license = "MIT"
 authors = ["poly000"]
@@ -23,3 +23,4 @@ strip = true
 codegen-units = 1
 
 [dev-dependencies]
+rstest = "0.13.0"

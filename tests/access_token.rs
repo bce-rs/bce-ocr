@@ -1,13 +1,9 @@
-#![allow(unused_variables)]
+use rstest::*;
 
 use bce_ocr::acquire_access_token;
 const SECRET: &str = include_str!("res/key.csv");
 
-#[test]
-fn test_acquire_access_token() {
-    println!("{}", access_token());
-}
-
+#[fixture]
 pub fn access_token() -> String {
     let secret = SECRET.to_owned();
     let keys: Vec<&str> = secret.trim().split(",").collect();
