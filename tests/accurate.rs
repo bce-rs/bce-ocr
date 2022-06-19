@@ -1,10 +1,10 @@
 mod access_token;
 use access_token::access_token;
-use bce_ocr::v1::accurate_basic;
+use bce_ocr::v1::accurate_basic::{self, Response, Sentence};
 const IMAGE: &str = include_str!("res/text.png.b64");
 
 #[test]
-#[ignore = "tested with correct parameters"]
+#[ignore]
 fn accurate_basic() {
     let access_token = access_token();
     use accurate_basic::Image;
@@ -21,6 +21,7 @@ fn accurate_basic() {
     req.probability = Some(true);
 
     let response = req.post(access_token).unwrap();
+    let words = &response.words_result[0].words;
 
-    println!("{response:?}");
+    assert_eq!(words, "bug是常事")
 }

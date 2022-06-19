@@ -70,6 +70,7 @@ pub struct Request {
     pub probability: Option<bool>,
 }
 
+/// to get the `Response`, use `Request::new` to build a request.
 #[derive(Deserialize, Debug)]
 pub struct Response {
     pub log_id: u64,
@@ -81,20 +82,20 @@ pub struct Response {
 
 #[derive(Deserialize, Debug)]
 pub struct SentenceIdx {
-    words_result_idx: Vec<u32>,
+    pub words_result_idx: Vec<u32>,
 } 
 
 #[derive(Deserialize, Debug)]
 pub struct Sentence {
-    words: String,
-    probability: Option<Probability>,
+    pub words: String,
+    pub probability: Option<Probability>,
 }
 
 #[derive(Deserialize, Debug)]
 pub struct Probability {
-    average: f64,
-    min: f64,
-    variance: f64,
+    pub average: f64,
+    pub min: f64,
+    pub variance: f64,
 }
 
 #[derive(Deserialize_repr, Debug)]
