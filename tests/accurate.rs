@@ -1,6 +1,6 @@
 mod access_token;
 use access_token::access_token;
-use bce_ocr::v1::accurate_basic::{self, Response, Sentence};
+use bce_ocr::v1::accurate_basic;
 const IMAGE: &str = include_str!("res/text.png.b64");
 
 #[test]

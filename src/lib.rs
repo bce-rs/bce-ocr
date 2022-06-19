@@ -6,6 +6,5 @@ pub mod v1 {
     pub mod accurate_basic;
 }
 
-/// 
 mod access_token;
 pub use access_token::acquire_access_token;
