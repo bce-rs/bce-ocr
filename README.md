@@ -1,5 +1,8 @@
 <div align="center">
 
+<img src="https://user-images.githubusercontent.com/34085039/174447461-7ed6794b-1c67-4507-a94a-f2075ec457e4.jpg" alt="drawing" width="128"/>
+
+
 ## bce-ocr
 
 <p>simple rust sdk for Baidu AI Cloud's OCR services</p>
