@@ -20,21 +20,20 @@ impl Request {
         }
     }
 
-    pub fn probability(mut self, probility: bool) -> Self {
-        self.probability = Some(probility);
+    pub fn probability(mut self, probability: bool) -> Self {
+        self.probability = Some(probability);
         self
     }
 
     pub fn post(
         self,
-        access_token: impl Into<String>,
+        access_token: &str,
     ) -> Result<Response, Box<dyn std::error::Error>> {
-        let access_token: String = access_token.into();
         let data = serde_url_params::to_string(&self)?;
 
         let response = ureq::post("https://aip.baidubce.com/rest/2.0/ocr/v1/accurate_basic")
             .set("Content-Type", "application/x-www-form-urlencoded")
-            .query("access_token", &access_token)
+            .query("access_token", access_token)
             .send_string(&data)?
             .into_string()?;
 

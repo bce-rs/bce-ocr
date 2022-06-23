@@ -1,13 +1,11 @@
 [package]
 name = "bce-ocr"
-version = "2022.6.20-0"
+version = "2022.6.23-0"
 edition = "2021"
 license = "MIT"
 authors = ["poly000"]
 description = "unofficial rust OCR SDK of Baidu AI Cloud"
 repository = "https://github.com/bce-rs/bce-ocr"
-
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
 thiserror = "1.0.31"
@@ -17,10 +15,5 @@ serde_json = "1.0.81"
 serde_url_params = "0.2.1"
 serde_repr = "0.1.8"
 
-[profile.release]
-lto = "fat"
-strip = true
-codegen-units = 1
-
 [dev-dependencies]
-rstest = "0.13.0"
+rstest = "0.14.0"
